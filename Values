@@ -1,0 +1,43 @@
+-- Insert values into the Categories Table
+INSERT INTO Categories (category_name, description)
+VALUES 
+('Electronics', 'Devices and gadgets like phones, laptops, and accessories.'),
+('Furniture', 'Office and home furniture items.'),
+('Monitors', 'Computer monitors and related accessories.'),
+('Accessories', 'Computer and mobile accessories.');
+
+-- Insert values into the Suppliers Table
+INSERT INTO Suppliers (supplier_name, contact_name, address, phone_number)
+VALUES 
+('Tech Supplies Inc.', 'John Doe', '123 Tech Street, New York, NY', '123-456-7890'),
+('Furniture World', 'Jane Smith', '456 Furniture Avenue, Los Angeles, CA', '987-654-3210'),
+('Monitor Mart', 'Emily Johnson', '789 Monitor Blvd, Chicago, IL', '555-123-4567'),
+('Accessory Hub', 'Michael Brown', '321 Accessory Lane, Miami, FL', '111-222-3333'),
+('ABC Supplies', 'John Doe', '123 Elm Street, Springfield', '555-1234');
+
+-- Insert values into the Products Table
+INSERT INTO Products (product_name, category_id, price, stock_quantity, reorder_level)
+VALUES 
+('Wireless Mouse', 1, 29.99, 100, 10),
+('Laptop Stand', 2, 45.50, 50, 5),
+('Mechanical Keyboard', 1, 89.99, 30, 7),
+('HD Monitor', 3, 159.99, 20, 5),
+('USB-C Hub', 4, 25.00, 60, 10),
+('Mobile',1,29.99,0,10);
+
+-- Insert values into the Orders Table
+INSERT INTO Orders (order_date, supplier_id, total_amount)
+VALUES 
+('2024-07-01', 1, 300.00),
+('2022-08-05', 3, 450.00),
+('2020-06-10', 5, 700.00),
+('2024-10-15', 4, 125.00);
+
+-- Insert values into the OrderDetails Table
+INSERT INTO OrderDetails (order_id, product_id, quantity, unit_price)
+VALUES 
+(1, 1, 10, 29.99),
+(1, 5, 5, 45.50),
+(2, 3, 7, 89.99),
+(3, 4, 2, 159.99),
+(4, 5, 10, 25.00);
