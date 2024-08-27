@@ -1,4 +1,4 @@
-# Inventory-Management
+# Inventory-Management Database
 An SQL-based inventory management system database for handling products, categories, suppliers, and orders. Includes sample data and queries to manage and analyze inventory effectively.
 Overview
 The InventoryManagement database is designed to manage inventory for a business, including products, categories, suppliers, orders, and order details. The database schema includes tables for Categories, Products, Suppliers, Orders, and OrderDetails, with constraints and relationships to maintain data integrity.
