@@ -1,0 +1,58 @@
+select * from  Products;
+select * from Categories;
+select * from Suppliers;
+select * from Orders;
+select * from OrderDetails;
+
+-- 1.)Retrieve the names and prices of all products that are currently out of stock --
+select product_name,price from Products where stock_quantity = 0;
+
+-- 2.)List the total number of products in each category. --
+select c.category_name, COUNT(p.product_id) AS total_products
+from Products as p
+inner join Categories as c ON p.category_id = c.category_id
+group by c.category_name;
+
+-- 3.)Find all suppliers who have supplied products worth more than $10,000.--
+select s.supplier_name, sum(od.quantity * od.unit_price) AS total_supplied_amount
+from Suppliers As s
+inner join Orders As o ON s.supplier_id = o.supplier_id
+inner join OrderDetails As od ON o.order_id = od.order_id
+group by s.supplier_name having total_supplied_amount > 500;
+
+-- 4.)Get the details of products with a stock quantity less than their reorder level. --
+select * from Products where stock_quantity < reorder_level;
+
+-- 5.)Retrieve the order IDs and total amounts for orders placed in the last 30 days. --
+select order_id,total_amount from Orders 
+where order_date >= curdate() - interval 30 day;
+
+-- 6.)List all products along with their categories, ordered by product name. --
+select * from Products As p inner join 
+Categories As c on p.category_id = c.category_id
+order by product_name ;
+
+-- 7.)Get the names of suppliers who have not supplied any products in the last 6 months. --
+select s.supplier_name,o.order_date >= curdate() - interval 6 month As last_six_month
+from Suppliers As s left join Orders As o ON
+s.supplier_id = o.supplier_id;
+
+-- 8.)Find the total amount spent on orders for each supplier. --
+select sum(o.total_amount)As total_amt_spent,s.supplier_name
+from Orders As o inner join Suppliers As s ON
+o.supplier_id = s.supplier_id group by s.supplier_name;
+
+-- 9.)Retrieve the product names and total quantities ordered for each product in the last year.--
+select p.product_name, sum(od.quantity) AS total_quantity_ordered
+from OrderDetails As od 
+inner join Products As p ON od.product_id = p.product_id
+inner join Orders As o ON od.order_id = o.order_id
+where o.order_date >= CURDATE() - INTERVAL 1 YEAR
+group by p.product_name;
+
+-- 10.)Get a list of products that belong to the Electronics category and have a price greater than $500 ->my values 20. --
+select p.product_name,p.price
+from Products As p
+inner join Categories As c ON p.category_id = c.category_id
+where c.category_name = 'Electronics' and p.price > 20;
+
