@@ -1,0 +1,45 @@
+create database InventoryManagement;
+
+use InventoryManagement;
+
+create table Categories(
+category_id INT PRIMARY KEY AUTO_INCREMENT,
+category_name VARCHAR(100) UNIQUE NOT NULL,
+description TEXT
+);
+
+create table Products(
+product_id INT PRIMARY KEY AUTO_INCREMENT,
+product_name VARCHAR(100) NOT NULL,
+category_id INT NOT NULL,
+price DECIMAL(10, 2) NOT NULL,
+stock_quantity INT NOT NULL,
+reorder_level INT NOT NULL,
+Constraint FOREIGN KEY (category_id) REFERENCES Categories(category_id)
+);
+
+create table Suppliers(
+supplier_id INT PRIMARY KEY AUTO_INCREMENT,
+supplier_name VARCHAR(100) NOT NULL,
+contact_name VARCHAR(50),
+address TEXT,
+phone_number VARCHAR(15) UNIQUE
+);
+
+create table Orders(
+order_id INT PRIMARY KEY AUTO_INCREMENT,
+order_date DATE NOT NULL,
+supplier_id INT NOT NULL,
+total_amount DECIMAL(10, 2) NOT NULL,
+Constraint FOREIGN KEY (supplier_id) REFERENCES Suppliers(supplier_id)
+);
+
+create table OrderDetails(
+order_detail_id INT PRIMARY KEY AUTO_INCREMENT,
+order_id INT NOT NULL,
+product_id INT NOT NULL,
+quantity INT NOT NULL,
+unit_price DECIMAL(10, 2) NOT NULL,
+Constraint FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+FOREIGN KEY (product_id) REFERENCES Products(product_id)
+);
