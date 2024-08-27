@@ -50,7 +50,7 @@ Sample data has been inserted into the Categories, Suppliers, Products, Orders, 
 SQL Queries
 A set of SQL queries has been provided to perform various operations, such as:
 
-After creating the tables, students should answer the following questions using SQL queries:
+
 1.	Retrieve the names and prices of all products that are currently out of stock.
 2.	List the total number of products in each category.
 3.	Find all suppliers who have supplied products worth more than $10,000.
